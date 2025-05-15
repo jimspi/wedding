@@ -4,25 +4,116 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logan & Rachel’s Wedding Photo Share</title>
+  <!-- Google Fonts for elegant typography -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2rem; background: #fff; }
-    button { padding: .75rem 1.5rem; font-size: 1rem; border: none; border-radius: 4px; background: #0078ff; color: #fff; cursor: pointer; }
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce4ec 100%);
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decorative Floral Accent */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: url('https://assets.codepen.io/3/floral-accent.png') no-repeat center/contain;
+      opacity: 0.3;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #ad1457;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    button {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      background: #ad1457;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(173, 20, 87, 0.3);
+    }
+    button:hover {
+      background: #c2185b;
+    }
   </style>
 </head>
 <body>
-  <h1>📸 Share Your Wedding Photos!</h1>
-  <p>Tap the button below, pick your snaps, and they’ll go straight to Logan & Rachel’s gallery.</p>
-  <button id="upload_widget">Upload Photos</button>
+  <div class="container">
+    <h1>Logan & Rachel ❤️</h1>
+    <p>Share your favorite moments from our special day! Tap below to upload your photos and make our memories complete.</p>
+    <button id="upload_widget">Upload Photos</button>
+  </div>
 
-  <!-- 1) Cloudinary Widget Script -->
+  <!-- Cloudinary Upload Widget -->
   <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
   <script>
-    // 2) Instantiate the widget
     const myWidget = cloudinary.createUploadWidget({
-      cloudName: 'dvujs7g1i',       // ← replace with your Cloud name
-      uploadPreset: 'wedding_upload' // ← replace with your preset name
+      cloudName: 'dvujs7g1i',
+      uploadPreset: 'wedding_upload',
+      multiple: true,
+      maxFiles: 10,
+      folder: 'wedding_uploads',
+      sources: [ 'local', 'camera' ],
+      styles: {
+        palette: {
+          window: '#fff',
+          windowBorder: '#ad1457',
+          tabIcon: '#ad1457',
+          menuIcons: '#ad1457',
+          textDark: '#333',
+          textLight: '#fff',
+          link: '#ad1457',
+          action: '#c2185b',
+          inactiveTabIcon: '#a9a9a9',
+          error: '#f44336',
+          inProgress: '#c2185b',
+          complete: '#4caf50',
+          sourceBg: '#fdf2f8'
+        },
+        fonts: {
+          default: null,
+          "'Montserrat', sans-serif": {
+            url: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap',
+            active: true
+          }
+        }
+      }
     }, (error, result) => {
-      if (!error && result.event === "success") {
+      if (!error && result.event === 'success') {
         alert('Thanks for sharing! 🎉');
         console.log('Uploaded URL:', result.info.secure_url);
       } else if (error) {
@@ -30,8 +121,7 @@
       }
     });
 
-    // 3) Open widget on button click
-    document.getElementById("upload_widget").onclick = () => myWidget.open();
+    document.getElementById('upload_widget').onclick = () => myWidget.open();
   </script>
 </body>
 </html>
