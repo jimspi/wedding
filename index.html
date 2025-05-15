@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logan & Rachel’s Wedding Photo Share</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2rem; background: #fff; }
+    button { padding: .75rem 1.5rem; font-size: 1rem; border: none; border-radius: 4px; background: #0078ff; color: #fff; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>📸 Share Your Wedding Photos!</h1>
+  <p>Tap the button below, pick your snaps, and they’ll go straight to Logan & Rachel’s gallery.</p>
+  <button id="upload_widget">Upload Photos</button>
+
+  <!-- 1) Cloudinary Widget Script -->
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+  <script>
+    // 2) Instantiate the widget
+    const myWidget = cloudinary.createUploadWidget({
+      cloudName: 'dvujs7g1i',       // ← replace with your Cloud name
+      uploadPreset: 'wedding_upload' // ← replace with your preset name
+    }, (error, result) => {
+      if (!error && result.event === "success") {
+        alert('Thanks for sharing! 🎉');
+        console.log('Uploaded URL:', result.info.secure_url);
+      } else if (error) {
+        alert('Upload failed: ' + error.message);
+      }
+    });
+
+    // 3) Open widget on button click
+    document.getElementById("upload_widget").onclick = () => myWidget.open();
+  </script>
+</body>
+</html>
