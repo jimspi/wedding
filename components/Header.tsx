@@ -7,17 +7,22 @@ export default function Header() {
   const pathname = usePathname();
 
   const linkClass = (href: string) =>
-    `text-sm tracking-wide transition-colors duration-200 ${
+    `font-display text-xs uppercase tracking-[0.2em] transition-colors duration-200 ${
       pathname === href
-        ? "text-primary font-medium"
-        : "text-secondary hover:text-primary"
+        ? "text-ink"
+        : "text-mid hover:text-ink"
     }`;
 
   return (
-    <header className="border-b border-highlight bg-surface/80 backdrop-blur-sm sticky top-0 z-40">
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-serif text-xl font-semibold text-primary">
-          Logan & Rachel
+    <header className="sticky top-0 z-40 bg-paper/90 backdrop-blur-md">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-ink flex items-center justify-center">
+            <span className="text-paper font-display font-bold text-xs">TM</span>
+          </div>
+          <span className="font-display font-semibold text-sm uppercase tracking-[0.15em] text-ink">
+            The Moment
+          </span>
         </Link>
 
         <nav className="flex items-center gap-8">
@@ -29,6 +34,7 @@ export default function Header() {
           </Link>
         </nav>
       </div>
+      <div className="h-px bg-ink" />
     </header>
   );
 }

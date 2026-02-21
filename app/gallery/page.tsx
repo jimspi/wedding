@@ -27,24 +27,27 @@ export default function GalleryPage() {
   }, [loadPhotos]);
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="flex items-end justify-between mb-10">
         <div>
-          <h1 className="font-serif text-3xl font-medium text-primary">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-mid">
+            All Photos
+          </span>
+          <h1 className="font-display text-4xl font-bold uppercase tracking-tight mt-1">
             Gallery
           </h1>
           {!loading && photos.length > 0 && (
-            <p className="text-secondary text-sm mt-1">
-              {photos.length} photo{photos.length !== 1 ? "s" : ""}
+            <p className="font-mono text-xs text-mid mt-2">
+              {photos.length} photo{photos.length !== 1 ? "s" : ""} shared
             </p>
           )}
         </div>
-        <UploadButton onUploadSuccess={loadPhotos} className="btn-secondary" />
+        <UploadButton onUploadSuccess={loadPhotos} className="btn-outline text-xs" />
       </div>
 
       {loading ? (
         <div className="text-center py-20">
-          <div className="inline-block w-6 h-6 border-2 border-highlight border-t-accent rounded-full animate-spin" />
+          <div className="inline-block w-5 h-5 border-2 border-rule border-t-ink rounded-full animate-spin" />
         </div>
       ) : (
         <PhotoGrid photos={photos} />
