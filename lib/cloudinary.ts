@@ -27,13 +27,7 @@ export async function fetchPhotos(maxResults = 100) {
     return (result.resources as CloudinaryResource[]).map((r) => ({
       public_id: r.public_id,
       url: r.secure_url,
-      thumbnail: cloudinary.url(r.public_id, {
-        width: 400,
-        height: 400,
-        crop: "fill",
-        quality: "auto",
-        format: "auto",
-      }),
+      thumbnail: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/c_fill,w_400,h_400,q_auto,f_auto/${r.public_id}.${r.format}`,
       width: r.width,
       height: r.height,
       created_at: r.created_at,
