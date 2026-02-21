@@ -32,6 +32,9 @@ export default function Header() {
           <Link href="/gallery" className={linkClass("/gallery")}>
             Gallery
           </Link>
+          <Link href="/qr" className={linkClass("/qr")}>
+            QR Code
+          </Link>
         </nav>
       </div>
       <div className="h-px bg-ink" />

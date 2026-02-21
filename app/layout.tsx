@@ -4,9 +4,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Logan & Rachel — Wedding Photos",
+  title: "The Moment — Logan & Rachel",
   description:
     "Share your favorite moments from Logan & Rachel's wedding day.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
