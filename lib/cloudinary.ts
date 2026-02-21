@@ -19,7 +19,7 @@ export async function fetchPhotos(maxResults = 100) {
   try {
     const result = await cloudinary.api.resources({
       type: "upload",
-      prefix: "Price_Wedding_upload",
+      prefix: "wedding_example",
       max_results: maxResults,
       resource_type: "image",
     });

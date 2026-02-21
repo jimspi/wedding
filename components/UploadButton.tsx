@@ -50,7 +50,7 @@ export default function UploadButton({
           uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
           multiple: true,
           maxFiles: 10,
-          folder: "Price_Wedding_upload",
+          folder: "wedding_example",
           sources: ["local", "camera"],
           styles: {
             palette: {
